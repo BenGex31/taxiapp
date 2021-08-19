@@ -5,15 +5,29 @@ import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 const RoundBtn = ({ IconName }) => {
+  const { container, iconStyle } = styles;
   return (
     <TouchableOpacity>
-      <View>
-        <Ionicons name={IconName} />
+      <View style={container}>
+        <Ionicons style={iconStyle} name={IconName} />
       </View>
     </TouchableOpacity>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#2dbb54",
+    height: 80,
+    width: 80,
+    borderRadius: 40,
+  },
+  iconStyle: {
+    fontSize: 45,
+    color: "#fff",
+  },
+});
 
 export default RoundBtn;
