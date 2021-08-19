@@ -8,12 +8,14 @@ import { Ionicons } from "@expo/vector-icons";
 import Block from "../components/Block";
 import Title from "../components/Title";
 import { prefix, auth } from "../utils/helpers";
+import RoundBtn from "../components/RoundBtn";
 
 const { width } = Dimensions.get("window");
 
 const HomeScreen = (props) => {
-  const { container, icon, container_2, titleContainer } = styles;
-  
+  const { container, icon, container_2, titleContainer, roundBtnContainer } =
+    styles;
+
   return (
     <View style={container}>
       <Block>
@@ -24,6 +26,10 @@ const HomeScreen = (props) => {
         <View style={titleContainer}>
           <Title content='Bienvenue' size='small' />
           <Title content='Vous recherchez un' size='medium' />
+        </View>
+        <View style={roundBtnContainer}>
+          <RoundBtn IconName={`${prefix}-car`} />
+          <RoundBtn IconName={`${prefix}-person`} />
         </View>
       </View>
     </View>
@@ -53,6 +59,12 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: "center",
     alignItems: "flex-start",
+  },
+  roundBtnContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: width - 80,
   },
 });
 
