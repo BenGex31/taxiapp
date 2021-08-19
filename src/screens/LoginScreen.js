@@ -4,10 +4,12 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Constants from "expo-constants";
 
+import Block from "../components/Block";
+
 const LoginScreen = (props) => {
   return (
     <View style={styles.container}>
-      <Text>Login Screen</Text>
+      <Block />
     </View>
   );
 };
@@ -18,7 +20,7 @@ const styles = StyleSheet.create({
     marginTop: Constants.statusBarHeight,
     flexDirection: "column",
     alignItems: "center",
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
   },
 });
 
