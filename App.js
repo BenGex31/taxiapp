@@ -7,6 +7,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import * as Font from "expo-font";
 
 import LoginScreen from "./src/screens/LoginScreen";
+import HomeScreen from "./src/screens/HomeScreen";
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -41,6 +42,7 @@ export default function App() {
     <NavigationContainer>
       <Navigator screenOptions={{ headerShown: false }}>
         <Screen name='Login' component={LoginScreen} />
+        <Screen name='Home' component={HomeScreen} />
       </Navigator>
     </NavigationContainer>
   );
