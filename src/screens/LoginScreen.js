@@ -5,11 +5,14 @@ import { View, Text, StyleSheet } from "react-native";
 import Constants from "expo-constants";
 
 import Block from "../components/Block";
+import Title from "../components/Title";
 
 const LoginScreen = (props) => {
   return (
     <View style={styles.container}>
-      <Block />
+      <Block>
+        <Title content="TAXI APP" />
+      </Block>
     </View>
   );
 };
