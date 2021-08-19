@@ -12,10 +12,11 @@ import LoginBtn from "../components/LoginBtn";
 
 const { width } = Dimensions.get("window");
 
-const LoginScreen = () => {
+const LoginScreen = (props) => {
   const { container, icon, container_2, titleContainer } = styles;
   const handleLogin = () => {
     auth();
+    props.navigation.push("Home");
   };
   return (
     <View style={container}>
