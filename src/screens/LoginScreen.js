@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     width: width,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-around",
   },
   titleContainer: {
     width: width - 80,
