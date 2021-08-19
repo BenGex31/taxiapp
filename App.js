@@ -12,6 +12,7 @@ const { Navigator, Screen } = createStackNavigator();
 
 export default function App() {
   const [loading, setLoading] = useState(true);
+
   const loadRessources = async () => {
     try {
       await Font.loadAsync({
@@ -23,9 +24,11 @@ export default function App() {
       console.error("error loading ressources", error);
     }
   };
+
   useEffect(() => {
-    loadRessources()
-  }, [])
+    loadRessources();
+  }, []);
+
   if (loading) {
     return (
       <View style={styles.container}>
@@ -33,6 +36,7 @@ export default function App() {
       </View>
     );
   }
+
   return (
     <NavigationContainer>
       <Navigator screenOptions={{ headerShown: false }}>
