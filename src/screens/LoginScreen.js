@@ -7,13 +7,16 @@ import { Ionicons } from "@expo/vector-icons";
 
 import Block from "../components/Block";
 import Title from "../components/Title";
-import { prefix } from "../utils/helpers";
+import { prefix, auth } from "../utils/helpers";
 import LoginBtn from "../components/LoginBtn";
 
 const { width } = Dimensions.get("window");
 
 const LoginScreen = () => {
   const { container, icon, container_2, titleContainer } = styles;
+  const handleLogin = () => {
+    auth();
+  };
   return (
     <View style={container}>
       <Block>
@@ -25,7 +28,7 @@ const LoginScreen = () => {
           <Title content='Authentification' size='small' />
           <Title content='Google Connexion' size='medium' />
         </View>
-        <LoginBtn />
+        <LoginBtn onPress={handleLogin} />
       </View>
     </View>
   );
