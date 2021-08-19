@@ -17,6 +17,8 @@ const styles = StyleSheet.create({
     flexGrow: 3,
     borderBottomLeftRadius: width,
     borderBottomRightRadius: width,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
