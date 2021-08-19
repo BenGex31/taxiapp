@@ -9,14 +9,16 @@ import Block from "../components/Block";
 import Title from "../components/Title";
 import { prefix } from "../utils/helpers";
 
-const LoginScreen = (props) => {
+const LoginScreen = () => {
   const { container, icon } = styles;
   return (
     <View style={container}>
       <Block>
         <Ionicons style={icon} name={`${prefix}-car`} />
-        <Title content='TAXI APP' />
+        <Title content='TAXI APP' size='big' />
       </Block>
+      <Title content='Authentification' size='small' />
+      <Title content='Google Connexion' size='medium' />
     </View>
   );
 };
