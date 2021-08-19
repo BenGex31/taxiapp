@@ -4,7 +4,6 @@ import React from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
 
 const { width } = Dimensions.get("window");
-console.log("width: " + width);
 
 const Block = ({ children }) => {
   return <View style={styles.container}>{children}</View>;
