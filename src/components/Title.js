@@ -4,15 +4,22 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 const Title = ({ content }) => {
+  const { container, title } = styles;
   return (
-    <View>
-      <Text>{content}</Text>
+    <View style={container}>
+      <Text style={title}>{content}</Text>
     </View>
   );
 };
 
-const styles= StyleSheet.create({
-    
-})
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  title: {
+    fontSize: 30,
+  },
+});
 
 export default Title;
