@@ -1,18 +1,38 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import { View, TextInput, StyleSheet, Dimensions } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { prefix } from "../utils/helpers";
+import { prefix, BASE_URL, API_KEY } from "../utils/helpers";
 
 const { width } = Dimensions.get("window");
 
-const PlaceInput = () => {
+const initialState = {
+  place: "",
+};
+
+const PlaceInput = (props) => {
+  const [state, setState] = useState(initialState);
+  const { place } = state;
   const { container, icon, input, inputContainer } = styles;
+
+  const handleChangeText = (value) => {
+    setState((prevState) => ({
+      ...prevState,
+      place: value,
+    }));
+    const url = `${BASE_URL}/place/autocomplete/json?input=${value}&key=${API_KEY}`
+    console.log("URL:", url);
+  };
+  
   return (
     <View style={container}>
       <View style={inputContainer}>
-        <TextInput style={input} />
+        <TextInput
+          style={input}
+          value={place}
+          onChangeText={handleChangeText}
+        />
         <Ionicons style={icon} name={`${prefix}-search`} />
       </View>
     </View>
