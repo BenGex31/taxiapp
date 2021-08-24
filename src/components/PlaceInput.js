@@ -22,10 +22,11 @@ const PlaceInput = () => {
 const styles = StyleSheet.create({
   container: {
     position: "absolute",
-    top: 20,
+    top: 7,
+    left: 5,
     borderRadius: 8,
     paddingHorizontal: 10,
-    width: width - 50,
+    width: width - 60,
     backgroundColor: "white",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
