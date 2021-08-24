@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState, useEffect } from "react";
-import { View, Dimensions, StyleSheet } from "react-native";
+import { View, Dimensions, StyleSheet, ActivityIndicator } from "react-native";
 import Constants from "expo-constants";
 import * as Location from "expo-location";
 import MapView from "react-native-maps";
@@ -11,7 +11,7 @@ const { width, height } = Dimensions.get("window");
 
 const PassengerScreen = () => {
   const [state, setState] = useState(initialState);
-
+  const { latitude, longitude } = state;
   const { container, mapStyle } = styles;
 
   const getUserLocation = async () => {
@@ -33,9 +33,26 @@ const PassengerScreen = () => {
     getUserLocation();
   }, []);
 
+  if (!latitude || !longitude) {
+    return (
+      <View>
+        <ActivityIndicator size='large' />
+      </View>
+    );
+  }
   return (
     <View style={container}>
-      <MapView style={mapStyle} />
+      <MapView
+        style={mapStyle}
+        showsUserLocation
+        followsUserLocation
+        region={{
+          latitude,
+          longitude,
+          longitudeDelta: 0.121,
+          latitudeDelta: 0.0015,
+        }}
+      />
     </View>
   );
 };
@@ -46,6 +63,7 @@ const styles = StyleSheet.create({
     marginTop: Constants.statusBarHeight,
     flexDirection: "column",
     alignItems: "center",
+    justifyContent: "center",
     backgroundColor: "#fff",
   },
   mapStyle: {
