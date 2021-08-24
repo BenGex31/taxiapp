@@ -25,6 +25,7 @@ const PassengerScreen = () => {
         latitude,
         longitude,
       }));
+      console.log("User located");
     } catch (error) {
       console.error("error getUserLocation");
     }
