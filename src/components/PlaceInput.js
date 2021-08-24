@@ -11,7 +11,7 @@ const initialState = {
   place: "",
 };
 
-const PlaceInput = (props) => {
+const PlaceInput = ({latitude, longitude}) => {
   const [state, setState] = useState(initialState);
   const { place } = state;
   const { container, icon, input, inputContainer } = styles;
@@ -21,7 +21,7 @@ const PlaceInput = (props) => {
       ...prevState,
       place: value,
     }));
-    const url = `${BASE_URL}/place/autocomplete/json?input=${value}&key=${API_KEY}`
+    const url = `${BASE_URL}/place/autocomplete/json?input=${value}&key=${API_KEY}&origin=${latitude},${longitude}&radius=2000&language=fr`
     console.log("URL:", url);
   };
   
