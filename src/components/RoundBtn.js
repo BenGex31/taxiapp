@@ -4,10 +4,10 @@ import React from "react";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-const RoundBtn = ({ IconName }) => {
+const RoundBtn = ({ IconName, onPress }) => {
   const { container, iconStyle } = styles;
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
       <View style={container}>
         <Ionicons style={iconStyle} name={IconName} />
       </View>
