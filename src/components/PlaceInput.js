@@ -4,27 +4,44 @@ import React, { useState } from "react";
 import { View, TextInput, StyleSheet, Dimensions } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { prefix, BASE_URL, API_KEY } from "../utils/helpers";
+import axios from "axios";
 
 const { width } = Dimensions.get("window");
 
 const initialState = {
   place: "",
+  predictions: [],
 };
 
-const PlaceInput = ({latitude, longitude}) => {
+const PlaceInput = ({ latitude, longitude }) => {
   const [state, setState] = useState(initialState);
   const { place } = state;
   const { container, icon, input, inputContainer } = styles;
+
+  const search = async (url) => {
+    try {
+      const {
+        data: { predictions },
+      } = await axios.get(url);
+      setState((prevState) => ({
+        ...prevState,
+        predictions,
+      }));
+    } catch (error) {
+      console.error("error search: ", error);
+    }
+  };
 
   const handleChangeText = (value) => {
     setState((prevState) => ({
       ...prevState,
       place: value,
     }));
-    const url = `${BASE_URL}/place/autocomplete/json?input=${value}&key=${API_KEY}&origin=${latitude},${longitude}&radius=2000&language=fr`
-    console.log("URL:", url);
+    const url = `${BASE_URL}/place/autocomplete/json?input=${value}&key=${API_KEY}&origin=${latitude},${longitude}&radius=2000&language=fr`;
+    //console.log("URL:", url);
+    search(url);
   };
-  
+
   return (
     <View style={container}>
       <View style={inputContainer}>
