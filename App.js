@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as Font from "expo-font";
-import * as Permissions from "expo-permissions";
+import * as Location from "expo-location";
 
 import LoginScreen from "./src/screens/LoginScreen";
 import HomeScreen from "./src/screens/HomeScreen";
@@ -19,15 +19,20 @@ export default function App() {
 
   const loadRessources = async () => {
     try {
-      await Font.loadAsync({
-        Poppins: require("./assets/fonts/Poppins-Regular.ttf"),
-        LeckerliOne: require("./assets/fonts/LeckerliOne-Regular.ttf"),
-      });
-      const screen = await renderInitialScreen();
-      if (screen) {
-        setInitialScreen(screen);
+      const result = await new Promise.all([
+        Font.loadAsync({
+          Poppins: require("./assets/fonts/Poppins-Regular.ttf"),
+          LeckerliOne: require("./assets/fonts/LeckerliOne-Regular.ttf"),
+        }),
+        renderInitialScreen(),
+        Location.requestForegroundPermissionsAsync(),
+      ]);
+      const route = result[1];
+      const status = result[2].status;
+      if (route && status === "granted") {
+        setInitialScreen(route);
+        setLoading(false);
       }
-      setLoading(false);
     } catch (error) {
       console.error("error loading ressources", error);
     }
