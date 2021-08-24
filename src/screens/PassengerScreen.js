@@ -5,6 +5,7 @@ import { View, Dimensions, StyleSheet, ActivityIndicator } from "react-native";
 import Constants from "expo-constants";
 import * as Location from "expo-location";
 import MapView from "react-native-maps";
+import PlaceInput from "../components/PlaceInput";
 
 const initialState = { latitude: null, longitude: null };
 const { width, height } = Dimensions.get("window");
@@ -53,6 +54,7 @@ const PassengerScreen = () => {
           latitudeDelta: 0.0015,
         }}
       />
+      <PlaceInput />
     </View>
   );
 };
