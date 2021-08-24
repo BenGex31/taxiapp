@@ -1,10 +1,9 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
 import Constants from "expo-constants";
 import { Ionicons } from "@expo/vector-icons";
-import * as Location from "expo-location";
 
 import Block from "../components/Block";
 import Title from "../components/Title";
@@ -12,35 +11,15 @@ import { prefix } from "../utils/helpers";
 import RoundBtn from "../components/RoundBtn";
 
 const { width } = Dimensions.get("window");
-const initialState = { latitude: null, longitude: null };
 
 const HomeScreen = (props) => {
-  const [state, setState] = useState(initialState);
   const { container, icon, container_2, titleContainer, roundBtnContainer } =
     styles;
-
-  const getUserLocation = async () => {
-    try {
-      const {
-        coords: { latitude, longitude },
-      } = await Location.getCurrentPositionAsync();
-      setState((prevState) => ({
-        ...prevState,
-        latitude,
-        longitude,
-      }));
-    } catch (error) {
-      console.error("error getUserLocation");
-    }
-  };
 
   const goTo = (route) => {
     props.navigation.push(route);
   };
 
-  useEffect(() => {
-    getUserLocation();
-  }, []);
   return (
     <View style={container}>
       <Block>
