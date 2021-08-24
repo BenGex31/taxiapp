@@ -15,6 +15,8 @@ const config = {
 
 export const API_KEY = "AIzaSyAxmHIUuN9lJ2moqREufoqvQCG1eR_FsZ0";
 
+export const BASE_URL = "https://maps.googleapis.com/maps/api";
+
 export const auth = async () => {
   try {
     const { user, type } = await Google.logInAsync(config);
