@@ -13,6 +13,8 @@ const config = {
   androidStandaloneAppClientId: `<YOUR_ANDROID_CLIENT_ID>`,
 };
 
+export const API_KEY = "AIzaSyAxmHIUuN9lJ2moqREufoqvQCG1eR_FsZ0";
+
 export const auth = async () => {
   try {
     const { user, type } = await Google.logInAsync(config);
