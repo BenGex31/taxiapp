@@ -13,7 +13,7 @@ import Constants from "expo-constants";
 import * as Location from "expo-location";
 import MapView from "react-native-maps";
 import PlaceInput from "../components/PlaceInput";
-import { BASE_URL, API_KEY } from "../utils/helpers";
+import { BASE_URL, API_KEY, getRoute, decodePoint } from "../utils/helpers";
 
 const initialState = { latitude: null, longitude: null };
 const { width, height } = Dimensions.get("window");
@@ -26,7 +26,9 @@ const PassengerScreen = () => {
   const handlePredictionPress = async (place_id) => {
     try {
       const url = `${BASE_URL}/directions/json?key=${API_KEY}&destination=place_id:${place_id}&origin=${latitude},${longitude}`;
-      console.log("url: ", url);
+      const points = await getRoute(url);
+      decodePoint(points);
+      //console.log("url: ", url);
     } catch (error) {
       console.error("error prediction press", error);
     }
