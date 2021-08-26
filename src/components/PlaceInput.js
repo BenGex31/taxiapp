@@ -59,7 +59,7 @@ const PlaceInput = ({ latitude, longitude }) => {
       place: value,
       loading: true,
     }));
-    const url = `${BASE_URL}/place/autocomplete/json?input=${value}&key=${API_KEY}&origin=${latitude},${longitude}&radius=2000&language=fr`;
+    const url = `${BASE_URL}/place/autocomplete/json?input=${value}&key=${API_KEY}&location=${latitude},${longitude}&radius=2000&language=fr`;
     //console.log("URL:", url);
     search(url);
   };
