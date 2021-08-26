@@ -11,6 +11,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { prefix, BASE_URL, API_KEY } from "../utils/helpers";
 import axios from "axios";
+import Predictions from "./Predictions";
 
 const { width } = Dimensions.get("window");
 
@@ -22,9 +23,21 @@ const initialState = {
 
 const PlaceInput = ({ latitude, longitude }) => {
   const [state, setState] = useState(initialState);
-  const { place, loading } = state;
+  const { place, loading, predictions } = state;
   const { container, icon, input, inputContainer } = styles;
 
+  const renderPredictions = () => {
+    return predictions.map((prediction) => {
+      const { structured_formatting, id, place_id } = prediction;
+      return (
+        <Predictions
+          main_text={structured_formatting.main_text}
+          secondary_text={structured_formatting.secondary_text}
+          key={id}
+        />
+      );
+    });
+  };
   const search = async (url) => {
     try {
       const {
@@ -62,6 +75,7 @@ const PlaceInput = ({ latitude, longitude }) => {
         {!loading && <Ionicons style={icon} name={`${prefix}-search`} />}
         {loading && <ActivityIndicator size={25} color='#d6d6d6' />}
       </View>
+      {!loading && predictions.length > 0 ? renderPredictions() : null}
     </View>
   );
 };
