@@ -11,23 +11,33 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 import * as Location from "expo-location";
-import MapView from "react-native-maps";
+import MapView, { Polyline } from "react-native-maps";
 import PlaceInput from "../components/PlaceInput";
 import { BASE_URL, API_KEY, getRoute, decodePoint } from "../utils/helpers";
 
-const initialState = { latitude: null, longitude: null };
+const initialState = {
+  latitude: null,
+  longitude: null,
+  coordinates: [],
+  destinationCoords: null,
+};
 const { width, height } = Dimensions.get("window");
 
 const PassengerScreen = () => {
   const [state, setState] = useState(initialState);
-  const { latitude, longitude } = state;
+  const { latitude, longitude, coordinates, destinationCoords } = state;
   const { container, mapStyle } = styles;
 
   const handlePredictionPress = async (place_id) => {
     try {
       const url = `${BASE_URL}/directions/json?key=${API_KEY}&destination=place_id:${place_id}&origin=${latitude},${longitude}`;
       const points = await getRoute(url);
-      decodePoint(points);
+      const coordinates = decodePoint(points);
+      setState((prevState) => ({
+        ...prevState,
+        coordinates,
+        destinationCoords: coordinates[coordinates.length - 1],
+      }));
       //console.log("url: ", url);
     } catch (error) {
       console.error("error prediction press", error);
@@ -73,8 +83,9 @@ const PassengerScreen = () => {
             longitude,
             longitudeDelta: 0.121,
             latitudeDelta: 0.0015,
-          }}
-        />
+          }}>
+          {coordinates.length > 0 && <Polyline coordinates={coordinates} />}
+        </MapView>
         <PlaceInput
           latitude={latitude}
           longitude={longitude}
