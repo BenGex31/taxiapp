@@ -7,7 +7,9 @@ const Predictions = ({ main_text, secondary_text, key }) => {
   const { secondary, main, container } = styles;
   return (
     <View style={container} key={key}>
-      <Text style={secondary}>{secondary_text}</Text>
+      <Text numberOfLines={1} style={secondary}>
+        {secondary_text}
+      </Text>
       <Text style={main}>{main_text}</Text>
     </View>
   );
