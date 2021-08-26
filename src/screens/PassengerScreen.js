@@ -1,7 +1,14 @@
 /** @format */
 
 import React, { useState, useEffect } from "react";
-import { View, Dimensions, StyleSheet, ActivityIndicator } from "react-native";
+import {
+  View,
+  Dimensions,
+  StyleSheet,
+  ActivityIndicator,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import Constants from "expo-constants";
 import * as Location from "expo-location";
 import MapView from "react-native-maps";
@@ -43,20 +50,22 @@ const PassengerScreen = () => {
     );
   }
   return (
-    <View style={container}>
-      <MapView
-        style={mapStyle}
-        showsUserLocation
-        followsUserLocation
-        region={{
-          latitude,
-          longitude,
-          longitudeDelta: 0.121,
-          latitudeDelta: 0.0015,
-        }}
-      />
-      <PlaceInput latitude={latitude} longitude={longitude} />
-    </View>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={container}>
+        <MapView
+          style={mapStyle}
+          showsUserLocation
+          followsUserLocation
+          region={{
+            latitude,
+            longitude,
+            longitudeDelta: 0.121,
+            latitudeDelta: 0.0015,
+          }}
+        />
+        <PlaceInput latitude={latitude} longitude={longitude} />
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
