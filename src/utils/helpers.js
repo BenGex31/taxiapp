@@ -3,6 +3,8 @@
 import { Platform } from "react-native";
 import * as Google from "expo-google-app-auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
+import PolyLine from "@mapbox/polyline";
 
 export const prefix = Platform.OS === "ios" ? "ios" : "md";
 
@@ -49,4 +51,29 @@ export const renderInitialScreen = async () => {
   } catch (error) {
     console.error("error render initial screen", error);
   }
+};
+
+export const getRoute = async (url) => {
+  try {
+    const {
+      data: { routes },
+    } = await axios.get(url);
+    const points = routes[0].overview_polyline.points;
+    return points;
+  } catch (error) {
+    console.error("error route", error);
+  }
+};
+
+export const decodePoint = (point) => {
+  const fixPoints = PolyLine.decode(point);
+
+  const route = fixPoints.map((fixPoint) => {
+    return {
+      latitude: fixPoint[0],
+      longitude: fixPoint[0],
+    };
+  });
+  console.log("route", route);
+  return route;
 };
