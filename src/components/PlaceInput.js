@@ -29,6 +29,7 @@ const PlaceInput = ({ latitude, longitude, onPredictionPress }) => {
   const renderPredictions = () => {
     return predictions.map((prediction) => {
       const { structured_formatting, id, place_id } = prediction;
+      console.log(prediction);
       return (
         <Predictions
           main_text={structured_formatting.main_text}
