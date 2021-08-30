@@ -38,7 +38,7 @@ const PassengerScreen = () => {
         coordinates,
         destinationCoords: coordinates[coordinates.length - 1],
       }));
-      //console.log("url: ", url);
+      console.log("url: ", url);
     } catch (error) {
       console.error("error prediction press", error);
     }
@@ -84,7 +84,13 @@ const PassengerScreen = () => {
             longitudeDelta: 0.121,
             latitudeDelta: 0.0015,
           }}>
-          {coordinates.length > 0 && <Polyline coordinates={coordinates} />}
+          {coordinates.length > 0 && (
+            <Polyline
+              coordinates={coordinates}
+              strokeWidth={4}
+              strokeColor='#2dbb54'
+            />
+          )}
         </MapView>
         <PlaceInput
           latitude={latitude}
