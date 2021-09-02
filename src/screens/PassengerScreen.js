@@ -84,13 +84,13 @@ const PassengerScreen = () => {
             longitudeDelta: 0.121,
             latitudeDelta: 0.0015,
           }}>
-          {coordinates.length > 0 && (
+          {/*coordinates.length > 0 && (
             <Polyline
               coordinates={coordinates}
               strokeWidth={4}
               strokeColor='#2dbb54'
             />
-          )}
+          )*/}
         </MapView>
         <PlaceInput
           latitude={latitude}
