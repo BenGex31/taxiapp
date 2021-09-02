@@ -56,7 +56,7 @@ const PassengerScreen = () => {
       }));
       console.log("User located");
     } catch (error) {
-      console.error("error getUserLocation");
+      console.error("error getUserLocation", error);
     }
   };
 
